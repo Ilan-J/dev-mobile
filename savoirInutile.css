@@ -1,0 +1,10 @@
+.savoir {
+    font-size: large;
+}
+.auteur {
+    font-size: medium;
+    margin: 0.5rem;
+}
+.date {
+    font-size: smaller;
+}
