@@ -1,6 +1,8 @@
 class Savoir {
     localArray = [];
 
+    textMonth = ['Jan.', 'Fev.', 'Mars', 'Avr.', 'Mai', 'Juin', 'Jui.', 'Aout', 'Sep.', 'Oct.', 'Nov.', 'Dec.']
+
     elementOl = null;
     elementLi = null;
 
@@ -15,7 +17,7 @@ class Savoir {
             // Display local storage
             this.localArray.forEach(element => {
 
-                this.ajouter( element.savoir, element.auteur, element.date );
+                this.ajouter( element.savoir, element.auteur, new Date(element.date) );
             });
         }
         console.log(this.localArray);
@@ -41,7 +43,7 @@ class Savoir {
         // Date
         let elementP3 = document.createElement( 'p' );
         elementP3.classList.add( 'date' );
-        elementP3.innerText = `Le : ${eP3}`;
+        elementP3.innerText = `Le : ${ eP3.getDate() } ${ this.textMonth[ eP3.getMonth() ] } ${ eP3.getFullYear() }`;
 
         // Boutton de supression
         let elementButton = document.createElement( 'button' );
@@ -89,6 +91,28 @@ class Savoir {
 
         parent.remove();
     }
+
+    trier( i = false ) {
+        if( i == true ) {
+            this.localArray.sort( ( a, b ) => new Date( b.date ) - new Date( a.date ) );
+
+            console.info( 'Trier par Date' );
+
+        } else {
+            this.localArray.sort( ( a, b ) => a.savoir.localeCompare( b.savoir ) );
+
+            console.info( 'Trier par ordre Alphabétique' );
+        }
+        console.log( this.localArray );
+
+        // Display local storage
+        this.elementOl.replaceChildren();
+
+        this.localArray.forEach(element => {
+
+            this.ajouter( element.savoir, element.auteur, new Date( element.date ) );
+        });
+    }
 }
 
 
@@ -100,9 +124,6 @@ function ajouter() {
     let elSavoir = document.getElementById( 'savoir' ).value;
     let elAuteur = document.getElementById( 'auteur' ).value;
     let elDate = document.getElementById( 'date' ).valueAsDate;
-
-    let tmp = elDate.method;
-    console.log(tmp);
 
     // Vérification saisie
     if ( !savoir.verifSaisie( elSavoir, elAuteur, elDate ) ){
@@ -118,3 +139,6 @@ function ajouter() {
     savoir.stocker( elSavoir, elAuteur, elDate );
 }
 document.getElementById( 'submit' ).addEventListener( 'click', ajouter );
+
+document.getElementById( 'textSorting' ).addEventListener( 'click', () => { savoir.trier() } );
+document.getElementById( 'dateSorting' ).addEventListener( 'click', () => { savoir.trier( true ) } );
