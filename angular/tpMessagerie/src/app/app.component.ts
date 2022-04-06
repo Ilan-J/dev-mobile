@@ -6,12 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'toDoList';
-
-  todoList: string[] = [];
-  newTodo: string = '';
-
-  createTodo() {
-    
-  }
+  title = 'tpMessagerie';
 }

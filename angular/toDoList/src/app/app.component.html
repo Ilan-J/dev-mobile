@@ -1,0 +1,16 @@
+<en-tete></en-tete>
+
+<h1>{{title}}</h1>
+
+<form (submit)="createTodo()">
+
+  <input type="text" name="todo" [(ngModel)]="newTodo"/>
+</form>
+
+<ul>
+  <li *ngFor="let todo of todoList">
+    {{todo}}
+  </li>
+</ul>
+
+<pied-de-page [nomApplication]="title"></pied-de-page>
