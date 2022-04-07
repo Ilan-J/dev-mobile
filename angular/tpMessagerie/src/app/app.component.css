@@ -1,0 +1,22 @@
+h1 {
+    text-align: center;
+}
+
+.litle-text {
+    font-size: small;
+}
+
+.sendMsg form {
+    display: flex;
+        flex-flow: column;
+}
+.sendMsg form input {
+    margin-bottom: 12px;
+}
+.sendMsg form div {
+    align-self: flex-end;
+
+    display: flex;
+        flex-flow: row;
+        gap: 10px;
+}
